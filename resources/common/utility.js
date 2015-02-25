@@ -2,7 +2,6 @@ define(['jquery'], function ($){
 
     var utility = {
         // 단순한 dom 요소 선택을 위한 용도
-        // 주의! : ':radio[name=type1]:checked' 와 같이 :checked 같은 상태 구분을 하지말것.
         uiEnhancements: function (element) {
             var elementString = this.element || element || "html",
                 uiObject = this.ui || this;
