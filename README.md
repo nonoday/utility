@@ -7,7 +7,7 @@
         
     var object = {
         initialize : function(){
-            utility.uiEnhancements.call(object);
+            utility.uiEnhancements.call(this);
             this.test();
         },
         
