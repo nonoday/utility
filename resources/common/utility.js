@@ -3,20 +3,19 @@ define(['jquery'], function ($){
     var utility = {
         // 단순한 dom 요소 선택을 위한 용도
         uiEnhancements: function (element) {
-            var elementString = this.element || element || "html",
+            var $element = $(this.element || element || document),
                 uiObject = this.ui || this;
 
-            // dom이 갱신되는 경우에 다시 dom를 탐색하기 위해서 string객체저장
-            if(!uiObject.__elementString){ uiObject.__elementString = $.extend(true, {}, elementString); }
-            if(!uiObject.__uiString)     { uiObject.__uiString      = $.extend(true, {}, uiObject); }
+            // dom 갱신되는 경우에 다시 dom를 탐색하기 위해서 string객체저장
+            if(!uiObject.__uiString){
+                uiObject.__uiString = $.extend(true, {}, uiObject);
+            }
 
-            this.element = $(this.__elementString);
-            for (var key in this.__uiString) {
-                if (key === "__uiString") {
-                    continue;
-                }
-                uiObject[key] = (typeof this.__uiString[key] === "function") ? this.__uiString[key]()
-                    : $(this.__elementString).find(this.__uiString[key]);
+            if(this.ui){ this.element = $element; }
+            for (var key in uiObject.__uiString) {
+                if (key === "__uiString"){ continue; }
+                uiObject[key] = (typeof uiObject.__uiString[key] === "function") ? uiObject.__uiString[key]()
+                                                                                 : $element.find(uiObject.__uiString[key]);
             }
         },
 
