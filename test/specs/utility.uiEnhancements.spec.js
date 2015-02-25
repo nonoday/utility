@@ -38,6 +38,9 @@ define([
         it("var object={ ui:{} } 형태로 사용", function() {
             // 사용법2
             var object = {
+                initialize: function(){
+                    utility.uiEnhancements.call(this);
+                },
                 element : "#uiEnhancements2",
                 ui : {
                     test1 : ".test1",
@@ -45,7 +48,7 @@ define([
                     radioChecked : ':radio[name=type]:checked'
                 }
             };
-            utility.uiEnhancements.call(object);
+            object.initialize();
 
             expect(object.ui.test1.text()).toBe("text2-1-txt 입니다.");
             expect(object.ui.test2.text()).toBe("text2-2-txt 입니다.");
