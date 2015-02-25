@@ -15,7 +15,7 @@
         ui : {
             test1 : ".test1",
             test2 : ".test2",
-            radios : 'input[type=radio]'
+            radioChecked : 'input[type=radio]:checked'
         },
         
         test: function(){
@@ -30,7 +30,7 @@
     var ui = {
         test1 : '.test1',
         test2 : '.test2',
-        radios : ':radio[name=type1]'
+        radioChecked : 'input[type=radio]:checked'
     };
     utility.uiEnhancements.call(ui, $element);
     
