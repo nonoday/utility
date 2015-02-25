@@ -8,12 +8,8 @@ define(['jquery'], function ($){
                 uiObject = this.ui || this;
 
             // dom이 갱신되는 경우에 다시 dom를 탐색하기 위해서 string객체저장
-            if (!this.__elementString) {
-                this.__elementString = elementString;
-            }
-            if (!this.__uiString) {
-                this.__uiString = uiObject;
-            }
+            if(!uiObject.__elementString){ uiObject.__elementString = $.extend(true, {}, elementString); }
+            if(!uiObject.__uiString)     { uiObject.__uiString      = $.extend(true, {}, uiObject); }
 
             this.element = $(this.__elementString);
             for (var key in this.__uiString) {
