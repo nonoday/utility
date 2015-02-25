@@ -1,0 +1,23 @@
+{
+  "name": "utility",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "load-grunt-config": "*",
+
+    "grunt": "*",
+    "grunt-karma": "*",
+    "grunt-open": "*",
+
+    "jasmine":"*",
+    "jasmine-jquery":"*",
+
+    "karma": "*",
+    "karma-requirejs": "^0.2.2",
+    "karma-coverage": "*",
+    "karma-jasmine": "*",
+    "karma-jasmine-ajax": "*",
+    "karma-phantomjs-launcher": "*",
+    "karma-coverage": "*"
+  }
+}
