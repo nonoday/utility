@@ -1,6 +1,6 @@
 # utility
 
-## uiEnhancement
+## utility.uiEnhancement
 매소드마다 복잡하게 삽입되어 있는 dom 접근 코드 관리를 위한 매쏘드
 
 ## 사용법1. 객체의 프로퍼티로 사용하기(추천)
@@ -39,4 +39,22 @@
 ***
 
 ## addComma, removeComma
-작성요망
+### addComma
+    양수일 경우
+    utility.price.addComma(12345) -> 12,345 (typeof==string)
+    utility.price.addComma('12345') -> '12,345' (typeof==string)
+    
+    음수일 경우
+    utility.price.addComma(-12345) -> -12,345 (typeof==string)
+    utility.price.addComma('-12345')  -> -12,345 (typeof==string)
+    
+    문자 및 단위 포함일 경우
+    
+
+### removeComma
+    
+    utility.price.removeComma('12,345') -> 12345; (typeof==number)
+    utility.price.removeComma('-12,345') -> -12345; (typeof==number)
+    
+    문자 및 단위 포함일 경우
+    
