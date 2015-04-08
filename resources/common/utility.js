@@ -90,8 +90,6 @@ define(['jquery'], function ($){
             /**
              * set 메소드와 같은 param 를 가진다.
              * @param name
-             * @param value
-             * @param max_age
              * @param path
              * @param domain
              */
