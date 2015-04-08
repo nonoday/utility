@@ -50,6 +50,37 @@ define(['jquery'], function ($){
             }
         },
 
+        cookie: {
+            set: function(name,value,max_age,path,domain){
+                max_age = max_age || 1;
+
+                var today = new Date();
+                var expires = new Date();
+                expires.setTime( today.getTime() + (1000*60*60*24*max_age) );
+
+                document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value)
+                    + "; path=" + (path ? path : "/")
+                    + "; domain=" + (domain ? domain : document.domain)
+                    + "; expires=" + expires.toGMTString();
+            },
+            get: function(name){
+                var allCookies = document.cookie;
+                var strCnt = name.length;
+                var pos = allCookies.indexOf(name+"=");
+
+                if(pos == -1) return undefined;
+
+                var start = pos + strCnt+1;
+                var end = allCookies.indexOf(";", start);
+                if(end == -1) end = allCookies.length;
+                var value = allCookies.substring(start, end);
+                return decodeURIComponent(value);
+            },
+            remove: function(name){
+                utility.cookie.set(name, "", -1);
+            }
+        },
+
         format : {
             // 날짜(Date 객체)를 포맷팅한다. 포맷 패턴을 지정하지 않으면 기본 패턴 yyyy/MM/dd HH:mm:ss 가 지정된다.
             // Date (Date object) Formatting.
