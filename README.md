@@ -1,5 +1,10 @@
 # utility
 
+## 테스트 코드 작성전 유의사항
+- utility.cookie 테스트시 서브 도메인테스트(local.localhost.com) 테스트를 위해서 host파일에 아래의 내용을 등록해 주세요.
+    - 127.0.0.1		localhost.com
+    - 127.0.0.1		local.localhost.com
+
 ## utility.uiEnhancement
 매소드마다 복잡하게 삽입되어 있는 dom 접근 코드 관리를 위한 매쏘드
 

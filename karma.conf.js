@@ -6,6 +6,8 @@ module.exports = function(config) {
         // basePath folder : WEB-INF
         basePath: '',
 
+        hostname: 'local.localhost.com',
+
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine', 'requirejs'],

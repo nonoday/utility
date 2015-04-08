@@ -51,17 +51,28 @@ define(['jquery'], function ($){
         },
 
         cookie: {
+            /**
+             * 쿠키 생성하기
+             * @param name
+             * @param value
+             * @param max_age 일(day)단위, 값이 없는 경우 Session 종료시 캐시값도 같이 삭제됨
+             * @param path
+             * @param domain
+             */
             set: function(name,value,max_age,path,domain){
-                max_age = max_age || 1;
-
-                var today = new Date();
-                var expires = new Date();
-                expires.setTime( today.getTime() + (1000*60*60*24*max_age) );
-
-                document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value)
+                var cookieString = encodeURIComponent(name) + "=" + encodeURIComponent(value)
                     + "; path=" + (path ? path : "/")
-                    + "; domain=" + (domain ? domain : document.domain)
-                    + "; expires=" + expires.toGMTString();
+                    + "; domain=" + (domain ? domain : document.domain);
+
+                // max_age 값이 있는 경우만 저장일을 설정하고
+                // max_age 값이 없는 경우 Session 종료될때 쿠키도 삭제될 수 있도록 설정
+                if(max_age){
+                    var today = new Date();
+                    var expires = new Date();
+                    expires.setTime( today.getTime() + (1000*60*60*24*max_age) );
+                    cookieString += "; expires=" + expires.toGMTString();
+                }
+                document.cookie = cookieString;
             },
             get: function(name){
                 var allCookies = document.cookie;
@@ -76,8 +87,18 @@ define(['jquery'], function ($){
                 var value = allCookies.substring(start, end);
                 return decodeURIComponent(value);
             },
-            remove: function(name){
-                utility.cookie.set(name, "", -1);
+            /**
+             * set 메소드와 같은 param 를 가진다.
+             * @param name
+             * @param value
+             * @param max_age
+             * @param path
+             * @param domain
+             */
+            remove: function(name,path,domain){
+                path   = path ? path : "/";
+                domain = domain ? domain : document.domain;
+                utility.cookie.set(name, "", -1, path, domain);
             }
         },
 
